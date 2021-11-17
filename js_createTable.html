@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연습문제 2</title>
+    <style>
+      input {
+        width: 50px;
+      }
+
+      button {
+        margin-left: 20px;
+      }
+      table {
+        width: 300px;
+      }
+      table,
+      td {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      td {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" id="rCount" value="2" />행
+      <input type="text" id="cCount" value="2" />열
+      <button onclick="createTable(); return false;">작성</button>
+      <div id="contents" class="off"></div>
+    </form>
+    <script>
+      function createTable() {
+        let ROW_COUNT = document.getElementById("rCount").value; //행 개수
+        let COLUM_COUNT = document.getElementById("cCount").value; //열 개수
+
+        // let trr = document.querySelectorAll("tr");
+
+        let checkTable = document.getElementById("contents");
+        if (checkTable.classList.contains("off")) {
+          checkTable.classList.remove("off");
+        } else {
+          let taable = document.querySelector("table");
+          taable.parentNode.removeChild(taable);
+        }
+        // if (checkTable.classList.contains("on")) {
+        //   checkTable.classList.remove("on");
+
+        //   trr.remove();
+        // }
+
+        let table = document.createElement("table");
+        for (i = 0; i < ROW_COUNT; i++) {
+          let newTr = document.createElement("tr"); //행 만들기
+          for (j = 0; j < COLUM_COUNT; j++) {
+            let newTd = document.createElement("td"); // 열방향으로 셀 하나 만들기
+            let newData = document.createTextNode(i + "," + j);
+            newTd.appendChild(newData); //셀 안에 데이터 입력.
+            newTr.appendChild(newTd);
+          }
+          table.appendChild(newTr);
+        }
+        let contents = document.querySelector("#contents");
+        contents.appendChild(table);
+      }
+    </script>
+  </body>
+</html>
