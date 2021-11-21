@@ -50,7 +50,6 @@ nav {
 #topMenu > li {
   float: left;
   position: relative;
-  z-index: 1;
 }
 #topMenu > li > a {
   display: block;
@@ -84,6 +83,7 @@ nav {
 }
 #topMenu > li:hover > ul {
   display: block;
+  z-index: 10;
 }
 #topMenu > li > ul > li > a:hover {
   color: #f00;
@@ -95,7 +95,6 @@ nav {
   height: 300px;
   overflow: hidden;
   position: relative;
-  z-index: -1;
 }
 #slieds {
   position: absolute;
@@ -114,7 +113,8 @@ button {
   color: #000;
   font-weight: 800;
   font-size: 24px;
-  opacity: 0.5;
+
+  z-index: 99;
 }
 #prev {
   left: 0;
