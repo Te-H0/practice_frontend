@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Programming</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>어쩌라고</h1>
+      <p>내일 할일</p>
+      <form action="" autocomplete="off">
+        <input type="text" id="subject" autofocus />
+        <button id="addItem" onclick="newToDo(); return false;">추가</button>
+      </form>
+      <hr />
+      <ul id="itemList"></ul>
+    </div>
+    <script>
+      let add = document.getElementById("addItem");
+
+      function newToDo() {
+        let newToDo = document.createElement("li"); //li요소 생성
+
+        let deleteButton = document.createElement("button"); //button tag
+        // let deleteId = document.createAttribute("type"); //delete button type
+        // deleteId.value = "button";
+        // deleteButton.setAttributeNode(deleteId);
+
+        let ButtonText = document.createTextNode("X"); // button value
+        let buttonId = document.createAttribute("id"); //button id
+        buttonId.value = "deleteButton"; //button id value
+        deleteButton.setAttributeNode(buttonId);
+
+        let itemList = document.getElementById("itemList"); //ul태그
+        let subject = document.getElementById("subject"); //input 태그
+        let item = document.createTextNode(subject.value); //input에서 입력 받은값.
+
+        deleteButton.appendChild(ButtonText);
+        newToDo.appendChild(deleteButton);
+
+        newToDo.appendChild(item);
+
+        itemList.insertBefore(newToDo, itemList.childNodes[0]);
+
+        subject.value = "";
+
+        var items = document.querySelectorAll("li"); // 모든 항목 가져오기
+        for (i = 0; i < items.length; i++) {
+          items[i].firstChild.addEventListener("click", function () {
+            // 항목 클릭했을 때 실행할 함수
+            if (this.parentNode)
+              // 부모 노드가 있다면
+              this.parentNode.parentNode.removeChild(this.parentNode); // 부모 노드에서 삭제
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
